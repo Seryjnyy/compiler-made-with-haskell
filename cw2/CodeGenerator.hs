@@ -68,7 +68,10 @@ declTAM (VarDeclInit v e) = do
     let an = app (expCode ve e) x
     ((ve', i'), x') <- stState
     stUpdate ((ve', i'), snd an)
-    return $ fst an
+    return $ (fst an)++[STORE i]
+-- need to store the value of the expression in the variable
+
+
 
 -- Commands
 generateCode ve c = do

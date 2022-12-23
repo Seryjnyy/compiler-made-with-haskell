@@ -1,13 +1,13 @@
 let 
     var n := 0;
     var x := 0;
-    var i := 51 != 12
+    var i := 51 != 51
 in
 begin
-    printint(i);
     getint (n);
     if n < 0 then x := 0 else x := 1;
-    i := 2;
+    i := (51 != 51) + 2;
+    printint(i);
     while i <= n do
         begin
             x := x * i;
