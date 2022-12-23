@@ -135,6 +135,14 @@ expressionTT ve (BinOp op t1 t2) = do
     op <- getBinOperTT op
     return $ t1' ++ t2' ++ op
 
+expressionTT ve (TernOp e1 e2 e3) = do
+    t1 <- expressionTT ve e1
+    l1 <- fresh
+    t2 <- expressionTT ve e2
+    l2 <- fresh
+    t3 <- expressionTT ve e3
+    return $ t1 ++ [JUMPIFZ l1] ++ t2 ++ [JUMP l2, LABEL l1] ++ t3 ++ [LABEL l2]
+
 expressionTT ve (LitInteger a) = do
     return [LOADL (fromInteger a)]
 

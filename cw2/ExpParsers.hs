@@ -5,8 +5,6 @@ import ExpressionAST ( UnOperator(..), BinOperator(..), AST(..) )
 import FunParsers ( symbol, integer, identifierP )
 import Control.Applicative ( Alternative(..) )
 
-
-
 minExp :: Parsers AST
 minExp = pr
 
@@ -20,6 +18,12 @@ pr' f = do x <- getTerm
               <|>
               do symbol "-"
                  pr' (BinOp Subtraction (f x))
+              <|>
+              do symbol "?"
+                 y <- pr
+                 symbol ":"
+                 z <- pr
+                 return (TernOp (f x) y z)
               <|>
               do symbol "<="
                  y <- pr
@@ -66,9 +70,6 @@ pr' f = do x <- getTerm
                      pr' (BinOp res (f(BinOp Division x y)))
                       <|> return ((f(BinOp Division x y)))
             <|> return (f x)
-
-
--- NEED TO PARSE TERNARY
 
 nextOp = do 
    symbol "+"
