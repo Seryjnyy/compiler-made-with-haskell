@@ -1,18 +1,4 @@
-let 
-    var n := 0;
-    var x := 0;
-    var i := 51 != 51
+let var x
 in
-begin
-    getint (n);
-    if n < 0 then x := 0 else x := 1;
-    i := (51 != 51) + 2;
-    printint(i);
-    while i <= n do
-        begin
-            x := x * i;
-            i := i + 1;
-            printint (x)
-        end;
-    printint (x)
-end
+    x := (1 < 3) || (4 && ((21 * 4 >= 6 ? 1 ? 0 : 2 : 5) ? 0 : (12 >= -2)))
+

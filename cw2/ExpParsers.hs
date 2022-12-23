@@ -22,28 +22,36 @@ pr' f = do x <- getTerm
                  pr' (BinOp Subtraction (f x))
               <|>
               do symbol "<="
-                 pr' (BinOp LessOrEq (f x))
+                 y <- pr
+                 return (f(BinOp LessOrEq x y))
               <|>
               do symbol "<"
-                 pr' (BinOp Less (f x))
+                 y <- pr
+                 return (f(BinOp Less x y))
               <|>
               do symbol ">="
-                 pr' (BinOp MoreOrEq (f x))
+                 y <- pr
+                 return (f(BinOp MoreOrEq x y))
               <|>
               do symbol ">"
-                 pr' (BinOp More (f x))
+                 y <- pr
+                 return (f(BinOp More x y))
               <|>
               do symbol "=="
-                 pr' (BinOp Equiv (f x))
+                 y <- pr
+                 return (f(BinOp Equiv x y))
               <|>
               do symbol "!="
-                 pr' (BinOp NotEquiv (f x))
+                 y <- pr
+                 return (f(BinOp NotEquiv x y))
               <|>
               do symbol "&&"
-                 pr' (BinOp And (f x))
+                 y <- pr
+                 return (f(BinOp And x y))
               <|>
               do symbol "||"
-                 pr' (BinOp Or (f x))
+                 y <- pr
+                 return (f(BinOp Or x y))
               <|>
               do symbol "*"
                  y <- getTerm
